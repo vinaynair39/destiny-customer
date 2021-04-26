@@ -13,13 +13,17 @@ function App() {
   return (
     <div className="App">
       <header>DESTINY</header>
-      <QrReader
-        delay={300}
-        // onError={this.handleError}
-        onScan={handleScan}
-        style={{ width: "50vh", paddingTop: "10vh" }}
-      />
-      {!!result && <Rating value={result} />}
+
+      {!!result ? (
+        <Rating value={result} />
+      ) : (
+        <QrReader
+          delay={300}
+          // onError={this.handleError}
+          onScan={handleScan}
+          style={{ width: "50vh", paddingTop: "10vh" }}
+        />
+      )}
     </div>
   );
 }
