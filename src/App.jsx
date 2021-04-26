@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import QrReader from "react-qr-reader";
 import "./App.css";
 import Rating from "./Rating";
-import Success from "./Success";
 
 function App() {
-  const [result, setResult] = useState("vnnair39@gmail.com");
+  const [result, setResult] = useState("");
   const handleScan = (data) => {
     if (data) {
       setResult(data);
