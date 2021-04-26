@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import ReactStars from "react-stars";
 import { ReactComponent as Car } from "./car.svg";
 import { ReactComponent as Medal } from "./medal.svg";
 import { ReactComponent as Route } from "./route.svg";
 
 const Rating = ({ value }) => {
+  const history = useHistory();
   const [review, setReview] = useState({
     greatService: false,
     greatCar: false,
@@ -18,13 +20,18 @@ const Rating = ({ value }) => {
   };
 
   const handleSubmit = async (name) => {
-    const { data } = await axios.patch(
-      `https://84pd4xghga.execute-api.eu-west-1.amazonaws.com/dev/giveRatings`,
-      {
-        email: "value",
-        reviews: review,
-      }
-    );
+    try {
+      const { data } = await axios.patch(
+        `https://84pd4xghga.execute-api.eu-west-1.amazonaws.com/dev/giveRatings`,
+        {
+          email: value,
+          reviews: review,
+        }
+      );
+      history.push("/success");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   console.log(review);
