@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+$green: #71b86e;
+$black: #35393f;
+$font-primary: "Mulish", sans-serif;
+// $font-secondary: "IBM Plex Mono", monospace;
+
+$text-dark: #3f5366;
+$text-medium: #6d7d8b;
+$text-light: #bbc8d4;
+
+$purple: #0c0d22;
+$grey: #24263c;
+$pink: #c00f6e;
+
+input[type="text"],
+button,
+a {
+  text-decoration: none;
+  outline: none;
+  border: none;
+  list-style: none;
+  background: none;
+  border: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Mulish", sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #0b0c21;
+  color: white;
+}
+
+:root {
+  --amplify-primary-color: black;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.Feedback {
+  display: grid;
+  width: 100%;
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15vh;
+    height: 50vh;
+    background-color: lighten(#0b0c21, 5%);
+    border-top-right-radius: 2rem;
+    position: relative;
+    border-top-left-radius: 2rem;
+    padding-top: 3.5rem;
+    .name {
+      font-size: 1.2rem;
+    }
+    img {
+      position: absolute;
+      height: 5rem;
+      width: 5rem;
+      top: -3rem;
+    }
+  }
+
+  .main {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    width: 100%;
+    background-color: lighten(#0b0c21, 20%);
+    padding: 1rem 1rem;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+    .title {
+      font-size: 1.2rem;
+      text-align: start;
+      padding: 1rem 1rem;
+    }
+
+    .compliments {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 1rem;
+      width: 100%;
+
+      .compliment {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        span {
+          margin-top: 1rem;
+          font-size: 1rem;
+          color: white;
+        }
+      }
+      svg {
+        height: 5rem;
+        width: 5rem;
+        background-color: $pink;
+        padding: 1rem;
+        border-radius: 100%;
+      }
+    }
+
+    .active {
+      svg {
+        background-color: salmon;
+      }
+    }
+
+    .submit {
+      margin-top: 2rem;
+      padding: 1rem;
+      color: white;
+      background-color: $pink;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      transition: all 0.2s ease-in-out;
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+  }
+}
