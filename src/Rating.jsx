@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import ReactStars from "react-stars";
 import { ReactComponent as Car } from "./car.svg";
@@ -14,10 +14,25 @@ const Rating = ({ value }) => {
     fastRoute: false,
     rating: 0,
   });
+  const [profile, setProfile] = useState();
 
   const handleReview = (name) => {
     setReview((state) => ({ ...review, [name]: !state[name] }));
   };
+
+  useEffect(() => {
+    const getDetails = async () => {
+      const { data } = await axios.get(
+        `https://84pd4xghga.execute-api.eu-west-1.amazonaws.com/dev/viewDriverProfile?email=${value}`
+      );
+
+      setProfile({
+        name: data?.driver?.fullName,
+        image: data?.driver?.driverDocs?.driverPic,
+      });
+    };
+    getDetails();
+  }, [value]);
 
   const handleSubmit = async (name) => {
     try {
@@ -34,16 +49,11 @@ const Rating = ({ value }) => {
     }
   };
 
-  console.log(review);
-
   return (
     <div className="Feedback">
       <div className="details">
-        <img
-          src="https://thumbor.forbes.com/thumbor/fit-in/416x416/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5d24fb0834a5c400084adc63%2F0x0.jpg%3Fbackground%3D000000%26cropX1%3D177%26cropX2%3D3586%26cropY1%3D354%26cropY2%3D3767"
-          alt=""
-        />
-        <span className="name">{"Vinay Nair"}</span>
+        <img src={profile?.image} alt="" />
+        <span className="name">{profile?.name}</span>
         <ReactStars
           count={5}
           size={60}
